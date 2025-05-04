@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Log Habit</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-back-button defaultHref="/home" icon="chevron-back-outline" text="⬅️"></ion-back-button>
+  <!--  Form -->
+  <form (ngSubmit)="logHabit()">
+    <ion-item>
+      <ion-label position="stacked">Habit Name</ion-label>
+      <ion-input [(ngModel)]="habit" name="habit" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Completed?</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="completed" name="completed"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Notes (optional)</ion-label>
+      <ion-textarea [(ngModel)]="notes" name="notes"></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" class="ion-margin-top">
+      {{ editMode ? 'Update ✏️' : (redoMode ? 'Redone & Save 🔁' : 'Save Habit') }}
+    </ion-button>
+  </form>
+
+  <ion-divider class="ion-margin-vertical"></ion-divider>
+
+  <!--  Today’s Habits -->
+  <h2>Today's Habits</h2>
+
+  <ion-list *ngIf="habitsToday$ | async as habits">
+    <ion-item *ngFor="let habit of habits">
+      <ion-label>
+        <h3>{{ habit.habit }}</h3>
+        <p *ngIf="habit.notes">📝 {{ habit.notes }}</p>
+        <p>✅ Completed: {{ habit.completed ? 'Yes' : 'No' }}</p>
+      </ion-label>
+
+      <!--  Mark Complete -->
+      <ion-button
+        *ngIf="!habit.completed"
+        slot="end"
+        fill="outline"
+        color="success"
+        (click)="markAsCompleted(habit.id)">
+        Mark Complete
+      </ion-button>
+
+      <!--  Edit -->
+      <ion-button
+        slot="end"
+        fill="outline"
+        color="warning"
+        (click)="edit(habit)">
+        Edit
+      </ion-button>
+
+      <!-- 🔁 Redo -->
+      <ion-button
+        slot="end"
+        fill="outline"
+        color="primary"
+        (click)="redo(habit)">
+        Redo
+      </ion-button>
+
+      <!-- 🗑️ Delete -->
+      <ion-button
+        slot="end"
+        fill="outline"
+        color="danger"
+        (click)="delete(habit.id)">
+        Delete
+      </ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="habits.length === 0">
+      <ion-label>No habits logged today yet.</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

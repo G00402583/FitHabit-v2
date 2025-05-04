@@ -1,0 +1,61 @@
+<ion-header>
+  <!-- Toolbar uses primary colour by default -->
+  <ion-toolbar color="primary">
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons slot="end">
+     
+      <ion-button (click)="logout()">Logout</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- LOGO -->
+  <div class="logo-wrapper">
+    <img src="assets/fitimg.png" alt="FitHabit logo" class="fit-logo" />
+  </div>
+
+  <!-- WELCOME CARD -->
+  <div class="home-card">
+    <h2>Welcome to <strong>FitHabit</strong> 👑</h2>
+    <p *ngIf="userEmail">Logged in as: <strong>{{ userEmail }}</strong></p>
+
+
+    <ion-button expand="block" fill="solid" color="primary"  (click)="goTo('/track-workout')">
+      🏋️ Track Workout
+    </ion-button>
+
+    <ion-button expand="block" fill="solid" color="secondary" (click)="goTo('/log-habit')">
+      ✅ Log Habit
+    </ion-button>
+
+    <ion-button expand="block" fill="solid" color="tertiary" (click)="goTo('/workout-history')">
+      📋 View Workout History
+    </ion-button>
+
+    <ion-button expand="block" fill="solid" color="medium"   (click)="goTo('/profile')">
+      ⚙️ Profile Settings
+    </ion-button>
+
+    <!-- DARK MODE TOGGLE -->
+    <div class="theme-toggle">
+      <ion-icon name="moon"></ion-icon>
+      <strong>Dark Mode</strong>
+      <ion-toggle [(ngModel)]="darkMode" (ionChange)="toggleTheme()"></ion-toggle>
+    </div>
+
+    <!-- ── FCM TOKEN DISPLAY ────────────────────────── -->
+    <ion-card *ngIf="fcmToken">
+      <ion-card-header>
+        <ion-card-title>FCM Token</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+      
+        <ion-textarea readonly [value]="fcmToken"></ion-textarea>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+</ion-content>

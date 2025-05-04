@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Track Workout 🏋️</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-back-button defaultHref="/home" icon="chevron-back-outline" text="⬅️"></ion-back-button>
+<ion-content class="ion-padding">
+  <form (ngSubmit)="saveWorkout()">
+    <ion-item>
+      <ion-label position="stacked">Exercise</ion-label>
+      <ion-input [(ngModel)]="exercise" name="exercise" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Sets</ion-label>
+      <ion-input type="number" [(ngModel)]="sets" name="sets" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Reps</ion-label>
+      <ion-input type="number" [(ngModel)]="reps" name="reps" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Notes (optional)</ion-label>
+      <ion-textarea [(ngModel)]="notes" name="notes"></ion-textarea>
+    </ion-item>
+    <ion-button expand="block" type="submit" class="ion-margin-top">
+      Save Workout
+    </ion-button>
+  </form>
+</ion-content>

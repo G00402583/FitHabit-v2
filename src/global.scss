@@ -1,0 +1,122 @@
+@import "@ionic/angular/css/core.css";
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+@import "@ionic/angular/css/palettes/dark.system.css";
+@import "./theme/variables.scss";  /* brand colours */
+
+/* -----------------------------------------------------------------------------
+   Force the <ion-content> background tobrand background
+----------------------------------------------------------------------------- */
+ion-content {
+  --background: var(--ion-background-color) !important;
+}
+
+/* -----------------------------------------------------------------------------
+   Style every toolbar/header with primary colour
+----------------------------------------------------------------------------- */
+ion-header ion-toolbar,
+ion-toolbar {
+  background: var(--ion-color-primary) !important;
+  color: var(--ion-color-primary-contrast) !important;
+}
+
+/* -----------------------------------------------------------------------------
+   Force all <ion-button color="..."> to use solid brand fills
+----------------------------------------------------------------------------- */
+/* Buttons in the Light DOM (Ionic v6+) */
+ion-button[color] {
+  background-color: var(--ion-color-base) !important;    /* primary/secondary/tertiary */
+  color:            var(--ion-color-contrast) !important;
+  border:           none !important;
+  --border-radius:  8px !important;
+  font-weight:      600 !important;
+}
+
+/* Buttons in Shadow DOM (Ionic v7+) */
+ion-button::part(native)[color] {
+  background-color: var(--ion-color-base) !important;
+  color:            var(--ion-color-contrast) !important;
+  border:           none !important;
+  border-radius:    8px !important;
+  font-weight:      600 !important;
+}
+
+/* -----------------------------------------------------------------------------
+   Style cards / containers with a dark surface
+----------------------------------------------------------------------------- */
+home-card,            /*  custom class */
+.card-surface,       
+ion-card {            /* Ionic card component */
+  background: #1b1b1d !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.45) !important;
+}
+
+/* -----------------------------------------------------------------------------
+   Decorative gradient strip at the very top
+----------------------------------------------------------------------------- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  z-index: 9999;
+  background: linear-gradient(
+    90deg,
+    var(--ion-color-primary) 0%,
+    var(--ion-color-secondary) 50%,
+    var(--ion-color-tertiary) 100%
+  ) !important;
+}
+
+/* ────── Outline the entire app in magenta ────── */
+body {
+  outline: 5px solid magenta !important;
+}
+
+
+
+ion-button[color][fill="outline"],
+ion-button[color][fill="clear"],
+ion-button[color]::part(native) {
+  /* use the brand background & contrast text */
+  --background: var(--ion-color-base)       !important;
+  --border-color: var(--ion-color-base)     !important;
+  --color:       var(--ion-color-contrast)  !important;
+  background:    var(--ion-color-base)      !important; /* v7 shadow part */
+  color:         var(--ion-color-contrast)  !important;
+}
+
+/* Light Theme (default) */
+:root {
+  --ion-background-color: #ffffff;
+  --ion-text-color: #000000;
+}
+
+/* Dark Theme */
+body.dark {
+  --ion-background-color: #1e1e1e;
+  --ion-text-color: #ffffff;
+}
+
+ion-app, .ion-page {
+  background-color: var(--ion-background-color) !important;
+}
+
+
+ion-toast {
+  z-index: 99999 !important;
+  --background: var(--ion-color-success); 
+  --color: white;
+  bottom: 20px !important;
+  top: auto !important;
+  position: fixed !important;
+}

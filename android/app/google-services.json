@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "216730298901",
+    "project_id": "fithabit-6e89d",
+    "storage_bucket": "fithabit-6e89d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216730298901:android:0dd7d8c03deba95576bc1c",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU10FFKYd_U_ssXh3B2rJlfqtx9nv6hhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "FitHabit",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

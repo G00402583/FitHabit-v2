@@ -1,0 +1,59 @@
+
+<!-- Swipe left to reveal Delete (tap) OR keep swiping to auto‑delete. -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Workout History</ion-title>
+  </ion-toolbar>
+  
+</ion-header>
+<ion-back-button defaultHref="/home" icon="chevron-back-outline" text="⬅️"></ion-back-button>
+<ion-content class="ion-padding">
+
+  <ion-list *ngIf="workouts$ | async as workouts; else loading">
+    <ion-item-sliding *ngFor="let w of workouts"
+                      (ionSwipe)="deleteWorkout(w.id!)"><!-- full‑swipe handler -->
+
+      <ion-item>
+        <ng-container *ngIf="editingId !== w.id; else editForm">
+          <ion-label>
+            <h2>{{ w.exercise }}</h2>
+            <p>Sets: {{ w.sets }}, Reps: {{ w.reps }}</p>
+            <p *ngIf="w.notes">Notes: {{ w.notes }}</p>
+          </ion-label>
+          <ion-note slot="end">{{ w.date.toDate() | date:'short' }}</ion-note>
+          <ion-button fill="clear" color="primary" (click)="startEdit(w)">Edit</ion-button>
+        </ng-container>
+
+        <ng-template #editForm>
+          <ion-label>
+            <ion-input [(ngModel)]="editWorkout.exercise" placeholder="Exercise"></ion-input>
+            <ion-input type="number" [(ngModel)]="editWorkout.sets" placeholder="Sets"></ion-input>
+            <ion-input type="number" [(ngModel)]="editWorkout.reps" placeholder="Reps"></ion-input>
+            <ion-textarea [(ngModel)]="editWorkout.notes" placeholder="Notes"></ion-textarea>
+          </ion-label>
+          <ion-button color="success" (click)="saveEdit(w.id!)">Save</ion-button>
+          <ion-button color="medium" (click)="cancelEdit()">Cancel</ion-button>
+        </ng-template>
+      </ion-item>
+
+      <!-- swipe OR tap Delete -->
+      <ion-item-options side="end" autoClose="true">
+        <ion-item-option color="danger" expandable (ionSelect)="deleteWorkout(w.id!)">
+          Delete
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+  <ng-template #loading>
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading your workouts…</p>
+  </ng-template>
+
+  <ion-item *ngIf="(workouts$ | async)?.length === 0">
+    <ion-label>No workouts logged yet.</ion-label>
+  </ion-item>
+
+</ion-content>

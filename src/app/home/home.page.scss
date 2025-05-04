@@ -1,0 +1,96 @@
+/* =========================================================
+   FitHabit – Home Page Styles
+   Uses brand palette defined in src/theme/variables.scss
+========================================================= */
+
+/* ---------- Layout wrappers ---------- */
+.home-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0 12px;
+}
+
+.fit-logo {
+  width: 160px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+}
+
+/* ---------- Main card ---------- */
+.home-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+
+  ion-button {
+    margin-top: 0.8rem;
+    font-weight: 600;          /* bold text */
+    letter-spacing: .4px;
+    --border-radius: 8px;
+  }
+}
+
+/* ---------- Dark‑mode toggle row ---------- */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-weight: 500;
+}
+
+/* ============================================================================
+   EXTRA MOBILE DASHBOARD CARD / BUTTON STYLES
+============================================================================ */
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* shadowed cards ion-card elsewhere */
+ion-card, .card-surface {
+  border-radius: 18px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  margin-inline: 0;
+}
+
+/* colourful hero card pattern (if added) */
+.hero-card {
+  padding: 0;
+  background: linear-gradient(135deg,#3b82f6 0%,#06b6d4 40%,#22c55e 100%);
+  color: #fff;
+}
+
+/* preference item sample */
+.pref-item {
+  --padding-start: 8px;
+  font-size: 1rem;
+}
+
+/* logout styling */
+#logoutFab {
+  --background: #ef4444;
+  --background-hover: #f87171;
+  --background-activated:#dc2626;
+  --color:#fff;
+  box-shadow:0 3px 10px rgba(0,0,0,.3);
+  margin:4px;
+}
+
+/* flat cards in dark mode */
+:host-context(.dark) ion-card {
+  box-shadow: none;
+}

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile / Settings</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+<ion-back-button defaultHref="/home" icon="chevron-back-outline" text="⬅️"></ion-back-button>
+
+
+<ion-content class="ion-padding">
+  <h2>Hello, {{ user?.email }}</h2>
+
+  <ion-item>
+    <ion-label position="stacked">Display Name</ion-label>
+    <ion-input [(ngModel)]="displayName" name="displayName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Bio</ion-label>
+    <ion-textarea [(ngModel)]="bio" name="bio"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Fitness Goal</ion-label>
+    <ion-textarea [(ngModel)]="goal" name="goal"></ion-textarea>
+  </ion-item>
+
+  <ion-button expand="block" (click)="updateProfile()">💾 Save Profile</ion-button>
+
+  <ion-item>
+    <ion-label>Dark Mode</ion-label>
+    <ion-toggle [(ngModel)]="darkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Reset Password</ion-label>
+    <ion-button fill="outline" slot="end" color="medium" (click)="resetPassword()">
+      Send Reset Email
+    </ion-button>
+  </ion-item>
+
+  <ion-button expand="block" color="danger" (click)="logout()">Logout</ion-button>
+</ion-content>
